@@ -24,10 +24,9 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: aae673e50fcbfdd4b95f88d39b608a4c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _USE_DISTORTION
+  m_ValidKeywords: []
   m_InvalidKeywords:
-  - _ALPHATEST_ON
+  - _USE_DISTORTION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -61,13 +60,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0.653
+    - _AlphaClip: 0
     - _DistortionSpeed: 15
     - _DistortionStrength: 0.05
     - _EdgeWidth: 0.0144
     - _QueueControl: 0
     - _QueueOffset: 0
     - _USE_DISTORTION: 1
+    - _Use_Distortion: 0
     m_Colors:
     - _EdgeEmissonColor: {r: 82.84833, g: 0, b: 114.0758, a: 0}
   m_BuildTextureStacks: []
