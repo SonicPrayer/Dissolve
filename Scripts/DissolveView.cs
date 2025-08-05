@@ -1,6 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
 public class DissolveView : MonoBehaviour
 {
     [Header("Dissolve Params")]
@@ -8,14 +9,26 @@ public class DissolveView : MonoBehaviour
     [SerializeField] private string alphaClipProperty = "_AlphaClip";
     [SerializeField] private string distortionProperty = "_Use_Distortion";
 
-    private Material _material;
+    [Header("Target Renderers")]
+    [SerializeField] private List<Renderer> targetRenderers = new();
+
+    private List<Material> _materials = new();
     private Coroutine _dissolveCoroutine;
     private bool _isDistortionEnabled = true;
 
     private void Awake()
     {
-        var component = GetComponent<Renderer>();
-        _material = component.material;
+        _materials.Clear();
+
+        foreach (var renderer in targetRenderers)
+        {
+            if (renderer == null) continue;
+
+            foreach (var mat in renderer.materials) // Instance materials
+            {
+                _materials.Add(mat);
+            }
+        }
     }
 
     public void StartDissolve() => PlayDissolve(1f);
@@ -24,7 +37,12 @@ public class DissolveView : MonoBehaviour
     public void ToggleDistortion()
     {
         _isDistortionEnabled = !_isDistortionEnabled;
-        _material.SetFloat(distortionProperty, _isDistortionEnabled ? 1f : 0f);
+
+        foreach (var mat in _materials)
+        {
+            if (mat.HasProperty(distortionProperty))
+                mat.SetFloat(distortionProperty, _isDistortionEnabled ? 1f : 0f);
+        }
     }
 
     private void PlayDissolve(float targetValue)
@@ -35,21 +53,32 @@ public class DissolveView : MonoBehaviour
         _dissolveCoroutine = StartCoroutine(AnimateDissolve(targetValue));
     }
 
-    private System.Collections.IEnumerator AnimateDissolve(float target)
+    private IEnumerator AnimateDissolve(float target)
     {
-        float start = _material.GetFloat(alphaClipProperty);
+        if (_materials.Count == 0) yield break;
+
+        float start = _materials[0].GetFloat(alphaClipProperty);
         float time = 0f;
 
         while (time < dissolveDuration)
         {
             float t = time / dissolveDuration;
             float value = Mathf.Lerp(start, target, t);
-            _material.SetFloat(alphaClipProperty, value);
+
+            foreach (var mat in _materials)
+            {
+                if (mat.HasProperty(alphaClipProperty))
+                    mat.SetFloat(alphaClipProperty, value);
+            }
 
             time += Time.deltaTime;
             yield return null;
         }
 
-        _material.SetFloat(alphaClipProperty, target);
+        foreach (var mat in _materials)
+        {
+            if (mat.HasProperty(alphaClipProperty))
+                mat.SetFloat(alphaClipProperty, target);
+        }
     }
 }

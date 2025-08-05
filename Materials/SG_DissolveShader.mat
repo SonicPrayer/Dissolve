@@ -26,6 +26,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _ALPHATEST_ON
   - _USE_DISTORTION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -38,8 +39,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AO:
+        m_Texture: {fileID: 2800000, guid: 751944e8b15f19e46ba5b21980113e3e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseColor:
+        m_Texture: {fileID: 2800000, guid: 83152ffb76ff0474182a36e65c69c3d9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicMap:
+        m_Texture: {fileID: 2800000, guid: 4581ad5e3c9f5264da00438082368174, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
         m_Texture: {fileID: 2800000, guid: f672b29f860170f4cb73177a4f380618, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: cafa24c67bb2ae94babdf46c585bae7e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_7c16099c051e4fd5b0f2b1855d61afad_Texture_1_Texture2D:
@@ -60,14 +77,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
-    - _DistortionSpeed: 15
-    - _DistortionStrength: 0.05
+    - _AlphaClip: 0.72
+    - _DistortionSpeed: 15.37
+    - _DistortionStrength: 0.08
     - _EdgeWidth: 0.0144
     - _QueueControl: 0
     - _QueueOffset: 0
     - _USE_DISTORTION: 1
-    - _Use_Distortion: 0
+    - _Use_Distortion: 1
     m_Colors:
     - _EdgeEmissonColor: {r: 82.84833, g: 0, b: 114.0758, a: 0}
   m_BuildTextureStacks: []
